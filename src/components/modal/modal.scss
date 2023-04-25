@@ -11,6 +11,7 @@
     background-color: rgba($color: $black, $alpha: 0.4);
     opacity: 0;
     visibility: hidden;
+    z-index: 100;
     &.active {
         opacity: 1;
         visibility: visible;
@@ -26,7 +27,7 @@
         @include tablet {
             width: 80%;
         }
-        &_close {
+        &__close {
             position: absolute;
             top: 5px;
             right: 5px;

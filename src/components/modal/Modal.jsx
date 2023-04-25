@@ -1,5 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import "boxicons";
 import "./modal.scss";
 const Modal = (props) => {
     const [active, setActive] = useState(false);
@@ -7,7 +8,7 @@ const Modal = (props) => {
         setActive(props.active);
     }, [props.active]);
     return (
-        <div className={`modal ${active ? "active" : ""}`}>
+        <div className={`modal ${active ? "active" : ""}`} id={props.id}>
             {props.children}
         </div>
     );
@@ -27,7 +28,9 @@ export const ModalContent = (props) => {
         <div ref={contentRef} className="modal__content">
             {props.children}
             <div className="modal__content__close" onClick={closeModal}>
-                <i className="bx bx-x"></i>
+                <i>
+                    <box-icon color="white" name="x"></box-icon>
+                </i>
             </div>
         </div>
     );
