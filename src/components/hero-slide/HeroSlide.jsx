@@ -21,14 +21,12 @@ const HeroSlide = (props) => {
                     { params }
                 );
                 setMovieItems(response.results.slice(1, 4));
-                console.log(response);
             } catch (error) {
                 console.log(error);
             }
         };
         getMovies();
     }, []);
-    console.log(movieItems);
     return (
         <div className="hero-slide">
             <Swiper

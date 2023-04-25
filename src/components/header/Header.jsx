@@ -37,7 +37,6 @@ const Header = () => {
         };
     }, []);
     const active = headerNav.findIndex((e) => e.path === pathname);
-    console.log(active);
     return (
         <div className="header">
             <div className="header__wrap container">
