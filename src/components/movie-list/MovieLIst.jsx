@@ -8,6 +8,7 @@ import tmdbApi, { category } from "../../api/tmdbApi";
 import apiConfig from "../../api/apiConfig";
 
 import "./movie-list.scss";
+import MovieCard from "../../assets/movie-card/MovieCard";
 const MovieLIst = (props) => {
     const [items, setItems] = useState([]);
     useEffect(() => {
@@ -40,10 +41,7 @@ const MovieLIst = (props) => {
             <Swiper slidesPerView="auto" spaceBetween={30} grabCursor={true}>
                 {items.map((item, i) => (
                     <SwiperSlide key={i}>
-                        <img
-                            src={apiConfig.w500Image(item.poster_path)}
-                            alt=""
-                        />
+                        <MovieCard item={item} category={props.category} />
                     </SwiperSlide>
                 ))}
             </Swiper>
