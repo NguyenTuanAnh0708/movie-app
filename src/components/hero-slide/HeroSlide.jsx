@@ -20,7 +20,7 @@ const HeroSlide = (props) => {
                     movieType.popular,
                     { params }
                 );
-                setMovieItems(response.results.slice(1, 4));
+                setMovieItems(response.results.slice(1, 6));
             } catch (error) {
                 console.log(error);
             }

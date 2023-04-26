@@ -8,7 +8,7 @@ import tmdbApi, { category } from "../../api/tmdbApi";
 import apiConfig from "../../api/apiConfig";
 
 import "./movie-list.scss";
-import MovieCard from "../../assets/movie-card/MovieCard";
+import MovieCard from "../movie-card/MovieCard";
 const MovieLIst = (props) => {
     const [items, setItems] = useState([]);
     useEffect(() => {

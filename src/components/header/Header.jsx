@@ -38,7 +38,7 @@ const Header = () => {
     }, []);
     const active = headerNav.findIndex((e) => e.path === pathname);
     return (
-        <div className="header">
+        <div ref={headerRef} className="header">
             <div className="header__wrap container">
                 <div className="logo">
                     <img src={logo} alt="TA-MOVIE" />
