@@ -18,10 +18,10 @@ const Detail = () => {
             const response = await tmdbApi.detail(category, id, { params: {} });
             setHidenLoading(true);
             setItem(response);
+            window.scrollTo(0, 0);
         };
         getDetail();
     }, [category, id]);
-    console.log(category, id);
     return (
         <>
             {item && (

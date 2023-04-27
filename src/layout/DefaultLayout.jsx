@@ -6,7 +6,6 @@ import { AppContext } from "../context/AppContext";
 import { GoToTop } from "../components/go-to-top/GoToTop";
 export const DefaultLayout = ({ children }) => {
     const { hidenLoading } = useContext(AppContext);
-    console.log(hidenLoading);
     return (
         <div className="wapper-defaultLayout">
             <GlobleLoading hiden={hidenLoading} />
