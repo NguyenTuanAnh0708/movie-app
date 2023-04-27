@@ -29,12 +29,11 @@ const MovieLIst = (props) => {
             } else {
                 response = await tmdbApi.similar(props.category, props.id);
             }
-            console.log(response);
+
             setItems(response.results);
         };
         getList();
     }, []);
-    console.log(items);
     return (
         <div className="movie-list">
             <Swiper slidesPerView="auto" spaceBetween={30} grabCursor={true}>
