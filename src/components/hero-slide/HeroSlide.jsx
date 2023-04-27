@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import apiConfig from "../../api/apiConfig";
 import tmdbApi, { category, movieType } from "../../api/tmdbApi";
@@ -9,8 +9,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import "swiper/css";
 import Modal, { ModalContent } from "../modal/Modal";
-
+import { AppContext } from "../../context/AppContext";
 const HeroSlide = (props) => {
+    const { setHidenLoading } = useContext(AppContext);
     const [movieItems, setMovieItems] = useState([]);
     useEffect(() => {
         const getMovies = async () => {
@@ -21,6 +22,7 @@ const HeroSlide = (props) => {
                     { params }
                 );
                 setMovieItems(response.results.slice(1, 6));
+                setHidenLoading(true);
             } catch (error) {
                 console.log(error);
             }
