@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
 import { useNavigate, useParams } from "react-router";
+import ReactLoading from "react-loading";
+
 import MovieCard from "../movie-card/MovieCard";
 import "./movie-grid.scss";
 import Button, { OutlineButton } from "../button/Button";
 import tmdbApi, { category, movieType, tvType } from "../../api/tmdbApi";
 import { AppContext } from "../../context/AppContext";
+import Input from "../input/Input";
 const MovieGrid = (props) => {
     const [items, setItems] = useState([]);
     const [page, setPage] = useState(1);
@@ -13,9 +16,9 @@ const MovieGrid = (props) => {
     const { keyword } = useParams();
     useEffect(() => {
         const getList = async () => {
+            setHidenLoading(false);
             let response = null;
             if (keyword === undefined) {
-                setHidenLoading(false);
                 const params = {};
                 switch (props.category) {
                     case category.movie:
@@ -29,7 +32,6 @@ const MovieGrid = (props) => {
                             params
                         });
                 }
-                setHidenLoading(true);
             } else {
                 const params = {
                     query: keyword
@@ -38,13 +40,14 @@ const MovieGrid = (props) => {
             }
             setItems(response.results);
             setTotalPage(response.total_pages);
+            setHidenLoading(true);
         };
         getList();
     }, [props.category, keyword]);
 
     const loadMore = async () => {
         let response = null;
-        if (keyword === undefined) {
+        if (keyword === undefined || keyword === "") {
             const params = {
                 page: page + 1
             };
@@ -74,8 +77,8 @@ const MovieGrid = (props) => {
 
     return (
         <>
-            <div className="section mb-3">
-                {/* <MovieSearch category={props.category} keyword={keyword} /> */}
+            <div className="section mb-3 mt-3">
+                <MovieSearch category={props.category} keyword={keyword} />
             </div>
             <div className="movie-grid">
                 {items.map((item, i) => (
@@ -102,7 +105,7 @@ const MovieSearch = (props) => {
         if (keyword.trim().length > 0) {
             navigate(`/${category[props.category]}/search/${keyword}`);
         }
-    }, [keyword, props.category, history]);
+    }, [keyword, props.category, navigate]);
 
     useEffect(() => {
         const enterEvent = (e) => {

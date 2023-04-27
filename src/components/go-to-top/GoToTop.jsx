@@ -8,14 +8,17 @@ export const GoToTop = () => {
         window.scrollTo(0, 0);
     };
     useEffect(() => {
-        window.addEventListener("scroll", () => {
+        const handelScroll = () => {
             if (window.scrollY > 250) {
                 setShowGoto(true);
             } else {
                 setShowGoto(false);
             }
-        });
-        return () => {};
+        };
+        window.addEventListener("scroll", handelScroll);
+        return () => {
+            window.removeEventListener("scroll", handelScroll);
+        };
     }, []);
     return (
         <>

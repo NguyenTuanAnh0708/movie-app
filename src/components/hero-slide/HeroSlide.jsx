@@ -26,7 +26,6 @@ const HeroSlide = (props) => {
                 setHidenLoading(true);
             } catch (error) {
                 console.log(error);
-                setHidenLoading(true);
             }
         };
         getMovies();
