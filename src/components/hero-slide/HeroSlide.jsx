@@ -15,6 +15,7 @@ const HeroSlide = (props) => {
     const [movieItems, setMovieItems] = useState([]);
     useEffect(() => {
         const getMovies = async () => {
+            setHidenLoading(false);
             const params = { page: 1 };
             try {
                 const response = await tmdbApi.getMoviesList(
@@ -25,6 +26,7 @@ const HeroSlide = (props) => {
                 setHidenLoading(true);
             } catch (error) {
                 console.log(error);
+                setHidenLoading(true);
             }
         };
         getMovies();

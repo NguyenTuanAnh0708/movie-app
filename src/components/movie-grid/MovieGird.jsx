@@ -1,25 +1,21 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import { useNavigate, useParams } from "react-router";
 import MovieCard from "../movie-card/MovieCard";
 import "./movie-grid.scss";
 import Button, { OutlineButton } from "../button/Button";
 import tmdbApi, { category, movieType, tvType } from "../../api/tmdbApi";
-
-import "boxicons";
+import { AppContext } from "../../context/AppContext";
 const MovieGrid = (props) => {
     const [items, setItems] = useState([]);
-    const [showGoToTop, setShowGoto] = useState(true);
     const [page, setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(0);
-
+    const { setHidenLoading } = useContext(AppContext);
     const { keyword } = useParams();
-    const handelGoToTop = () => {
-        window.scrollTo(0, 0);
-    };
     useEffect(() => {
         const getList = async () => {
             let response = null;
             if (keyword === undefined) {
+                setHidenLoading(false);
                 const params = {};
                 switch (props.category) {
                     case category.movie:
@@ -33,6 +29,7 @@ const MovieGrid = (props) => {
                             params
                         });
                 }
+                setHidenLoading(true);
             } else {
                 const params = {
                     query: keyword
@@ -92,16 +89,6 @@ const MovieGrid = (props) => {
                     </OutlineButton>
                 </div>
             ) : null}
-            <Button
-                className={`btn-GoToTop radius ${showGoToTop ? "show" : ""}`}
-                onClick={handelGoToTop}
-            >
-                <box-icon
-                    color="white"
-                    name="chevron-up"
-                    type="solid"
-                ></box-icon>
-            </Button>
         </>
     );
 };

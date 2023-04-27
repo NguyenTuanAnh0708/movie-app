@@ -36,14 +36,3 @@
         }
     }
 }
-.btn.btn-GoToTop {
-    z-index: 999;
-    position: fixed;
-    top: 80%;
-    right: 9px;
-    opacity: 0;
-    transition: opacity 0.5 ease;
-}
-.btn.btn-GoToTop.show {
-    opacity: 1;
-}
